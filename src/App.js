@@ -96,7 +96,7 @@ const App = () => {
                     searchUsers={searchUsers}
                     clearUsers={clearUsers}
                     showClear={users.length > 0 ? true : false}
-                    pushAlert={pushAlert}
+                    pushAlert={showAlert}
                   />
                   {/* Users list component */}
                   <Users users={users} loading={loading} />

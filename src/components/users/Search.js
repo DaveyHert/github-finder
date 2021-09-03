@@ -15,7 +15,7 @@ const Search = ({ showAlert, searchUsers, clearUsers, showClear }) => {
 
     // create alert if input is empty
     if (text === "") {
-      pushAlert(`Please enter a user's name`, "light");
+      showAlert(`Please enter a user's name`, "light");
     } else {
       searchUsers(text);
       setText("");

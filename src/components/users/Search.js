@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Search = ({ pushAlert, searchUsers, clearUsers, showClear }) => {
+const Search = ({ showAlert, searchUsers, clearUsers, showClear }) => {
   // Set state
   const [text, setText] = useState("");
 

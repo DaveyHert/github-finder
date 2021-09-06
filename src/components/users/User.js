@@ -4,11 +4,11 @@ import Spinner from "../layout/Spinner";
 import PropTypes from "prop-types";
 import Repos from "../repos/Repos";
 
-const User = (props) => {
+const User = ({ loading, repos, user, getUser, getUserRepos, match }) => {
   useEffect(() => {
-    const username = props.match.params.login;
-    props.getUser(username);
-    props.getUserRepos(username);
+    const username = match.params.login;
+    getUser(username);
+    getUserRepos(username);
 
     // eslint-disable-next-line
   }, []);
@@ -27,9 +27,7 @@ const User = (props) => {
     public_repos,
     public_gists,
     hireable,
-  } = props.user;
-
-  const { loading, repos } = props;
+  } = user;
 
   if (loading) return <Spinner />;
 

@@ -30,7 +30,6 @@ const User = ({ loading, repos, user, getUser, getUserRepos, match }) => {
   } = user;
 
   if (loading) return <Spinner />;
-
   return (
     <Fragment>
       <Link to='/' className='btn btn-light'>

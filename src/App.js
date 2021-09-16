@@ -10,14 +10,12 @@ import Alert from "./components/layout/Alert";
 import about from "./components/pages/about";
 
 const App = () => {
-  const [users, setUsers] = useState([])
-  const [user, setUser] = useState({})
-  const [repos, setRepos] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [alert, setAlert] = useState(null)
-  
-  
- 
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(null);
+
   /*
  async componentDidMount() {
   // Loading spinner and fetch data
@@ -34,31 +32,30 @@ const App = () => {
 
   // Receive query in search component and fetch multiple users
   const searchUsers = async (query) => {
-    setLoading(true)
+    setLoading(true);
     const res = await axios.get(
       `https://api.github.com/search/users?q=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
     const data = await res.data;
-    setUsers(data.items)
-    setLoading(false)
+    setUsers(data.items);
+    setLoading(false);
   };
 
   // Clear users
-  const  clearUsers = () => {
-    setUsers([])
-    setLoading(false)
+  const clearUsers = () => {
+    setUsers([]);
+    setLoading(false);
   };
 
   // Get single user
   const getUser = async (username) => {
-    setLoading(true)
+    setLoading(true);
     const res = await axios.get(
       `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
 
-    setUser(res.data)
-    setLoading(false)
-    
+    setUser(res.data);
+    setLoading(false);
   };
 
   // Get Users Repo
@@ -66,72 +63,69 @@ const App = () => {
     const res = await axios.get(
       `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
-    setRepos(res.data)
+    setRepos(res.data);
   };
 
   //Set alert if input is empty
   const setAlert = (msg, type) => {
-    setAlert({msg, type})
+    setAlert({ msg, type });
     // remove alert
     setTimeout(() => {
-     setAlert(null)
+      setAlert(null);
     }, 3000);
   };
 
   // render components
-  render() {
-    const { users, user, loading, alert, repos } = this.state;
-    return (
-      // wrap whole app in router
-      <Router>
-        <div className='App'>
-          <Navbar />
+  return (
+    // wrap whole app in router
+    <Router>
+      <div className='App'>
+        <Navbar />
 
-          <div className='container'>
-            <Alert alert={alert} />
-            <Switch>
-              {/* Home Page Route */}
-              <Route
-                exact
-                path='/'
-                //a render props is used when multiple components are to be shown
-                render={(props) => (
-                  <Fragment>
-                    {/* Search component */}
-                    <Search
-                      searchUsers={this.searchUsers}
-                      clearUsers={this.clearUsers}
-                      showClear={users.length > 0 ? true : false}
-                      setAlert={this.setAlert}
-                    />
-                    {/* Users list component */}
-                    <Users users={users} loading={loading} />
-                  </Fragment>
-                )}
-              />
-              {/* About Page Route */}
-              <Route exact path='/about' component={about} />
-              {/* Get single user route */}
-              <Route
-                exact
-                path='/user/:login'
-                render={(props) => (
-                  <User
-                    {...props}
-                    getUser={this.getUser}
-                    user={user}
-                    loading={loading}
-                    getUserRepos={this.getUserRepos}
-                    repos={repos}
+        <div className='container'>
+          <Alert alert={alert} />
+          <Switch>
+            {/* Home Page Route */}
+            <Route
+              exact
+              path='/'
+              //a render props is used when multiple components are to be shown
+              render={(props) => (
+                <Fragment>
+                  {/* Search component */}
+                  <Search
+                    searchUsers={searchUsers}
+                    clearUsers={this.clearUsers}
+                    showClear={users.length > 0 ? true : false}
+                    setAlert={this.setAlert}
                   />
-                )}
-              />
-            </Switch>
-          </div>
+                  {/* Users list component */}
+                  <Users users={users} loading={loading} />
+                </Fragment>
+              )}
+            />
+            {/* About Page Route */}
+            <Route exact path='/about' component={about} />
+            {/* Get single user route */}
+            <Route
+              exact
+              path='/user/:login'
+              render={(props) => (
+                <User
+                  {...props}
+                  getUser={getUser}
+                  user={user}
+                  loading={loading}
+                  getUserRepos={this.getUserRepos}
+                  repos={repos}
+                />
+              )}
+            />
+          </Switch>
         </div>
-      </Router>
-    );
-  }
-}
+      </div>
+    </Router>
+  );
+};
 
 export default App;

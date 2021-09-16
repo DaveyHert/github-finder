@@ -116,7 +116,7 @@ const App = () => {
                   getUser={getUser}
                   user={user}
                   loading={loading}
-                  getUserRepos={this.getUserRepos}
+                  getUserRepos={getUserRepos}
                   repos={repos}
                 />
               )}

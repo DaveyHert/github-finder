@@ -95,7 +95,7 @@ const App = () => {
                   {/* Search component */}
                   <Search
                     searchUsers={searchUsers}
-                    clearUsers={this.clearUsers}
+                    clearUsers={clearUsers}
                     showClear={users.length > 0 ? true : false}
                     setAlert={setAlert}
                   />

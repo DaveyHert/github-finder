@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Search = ({ setAlert, searchUsers, clearUsers, showClear }) => {
+const Search = ({ pushAlert, searchUsers, clearUsers, showClear }) => {
   // Set state
   const [text, setText] = useState("");
 
@@ -15,7 +15,7 @@ const Search = ({ setAlert, searchUsers, clearUsers, showClear }) => {
 
     // create alert if input is empty
     if (text === "") {
-      setAlert(`Please enter a user's name`, "light");
+      pushAlert(`Please enter a user's name`, "light");
     } else {
       searchUsers(text);
       setText("");
@@ -51,7 +51,7 @@ Search.propTypes = {
   searchUsers: PropTypes.func.isRequired,
   clearUsers: PropTypes.func.isRequired,
   showClear: PropTypes.bool.isRequired,
-  setAlert: PropTypes.func.isRequired,
+  pushAlert: PropTypes.func.isRequired,
 };
 
 export default Search;

@@ -67,7 +67,7 @@ const App = () => {
   };
 
   //Set alert if input is empty
-  const setAlert = (msg, type) => {
+  const pushAlert = (msg, type) => {
     setAlert({ msg, type });
     // remove alert
     setTimeout(() => {
@@ -97,7 +97,7 @@ const App = () => {
                     searchUsers={searchUsers}
                     clearUsers={clearUsers}
                     showClear={users.length > 0 ? true : false}
-                    setAlert={setAlert}
+                    pushAlert={pushAlert}
                   />
                   {/* Users list component */}
                   <Users users={users} loading={loading} />

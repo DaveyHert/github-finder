@@ -10,9 +10,9 @@ const Search = ({ setAlert, searchUsers, clearUsers, showClear }) => {
     setText(e.target.value);
   };
 
-  // Pass query up though props
   const onSubmit = (e) => {
     e.preventDefault();
+
     // create alert if input is empty
     if (text === "") {
       setAlert(`Please enter a user's name`, "light");

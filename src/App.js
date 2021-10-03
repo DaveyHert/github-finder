@@ -62,19 +62,19 @@ const App = () => {
   };
 
   // Get Users Repo
-  getUserRepos = async (username) => {
+  const getUserRepos = async (username) => {
     const res = await axios.get(
       `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
-
-    this.setState({ repos: res.data });
+    setRepos(res.data)
   };
+
   //Set alert if input is empty
-  setAlert = (msg, type) => {
-    this.setState({ alert: { msg, type } });
+  const setAlert = (msg, type) => {
+    setAlert({msg, type})
     // remove alert
     setTimeout(() => {
-      this.setState({ alert: null });
+     setAlert(null)
     }, 3000);
   };
 

@@ -12,6 +12,8 @@ import about from "./components/pages/about";
 const App = () => {
   const [users, setUsers] = useState([])
   const [user, setUser] = useState({})
+  const [repos, setRepos] = useState([])
+  
   state = {
     users: [],
     user: {},

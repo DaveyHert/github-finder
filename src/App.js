@@ -13,15 +13,11 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [user, setUser] = useState({})
   const [repos, setRepos] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [alert, setAlert] = useState(null)
   
-  state = {
-    users: [],
-    user: {},
-    repos: [],
-    loading: false,
-    alert: null,
-  };
-
+  
+ 
   /*
  async componentDidMount() {
   // Loading spinner and fetch data
@@ -37,18 +33,20 @@ const App = () => {
 */
 
   // Receive query in search component and fetch multiple users
-  searchUsers = async (query) => {
-    this.setState({ loading: true });
+  const searchUsers = async (query) => {
+    setLoading(true)
     const res = await axios.get(
       `https://api.github.com/search/users?q=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
     const data = await res.data;
-    this.setState({ users: data.items, loading: false });
+    setUsers(data.items)
+    setLoading(false)
   };
 
   // Clear users
-  clearUsers = () => {
-    this.setState({ users: [], loading: false });
+  const  clearUsers = () => {
+    setUsers([])
+    setLoading(false)
   };
 
   // Get single user

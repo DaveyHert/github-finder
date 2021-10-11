@@ -1,4 +1,4 @@
-import react, { useReducer } from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 import GithubContext from "./githubContext";
 import GithubReducer from "./GithubReducer";
@@ -21,7 +21,28 @@ const GithubState = (props) => {
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
 
-  // Search Users
+  //Search Users
 
-  //
+  //Get User
+
+  //Get Repos
+
+  // Set Loading
+
+  //Clear Users
+
+  return (
+    <GithubContext.Provider
+      value={{
+        users: state.users,
+        user: state.user,
+        repos: state.repos,
+        loading: state.loading,
+      }}
+    >
+      {props.childred}
+    </GithubContext.Provider>
+  );
 };
+
+export default GithubState;

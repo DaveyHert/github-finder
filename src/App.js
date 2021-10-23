@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/layout/Navbar";
+import Users from "./components/users/Users";
+import Search from "./components/users/Search";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+
+class App extends Component {
+  state = {
+    users: [],
+    loading: false,
+  };
+
+  async componentDidMount() {
+    // Loading spinner and fetch data
+    this.setState({ loading: true });
+    const res = await fetch(
+      `https://api.github.com/users?client_id=${process.env.REACT_APP_CLIENT_id}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+    const data = await res.json();
+
+    // update state and end loading spinner
+    this.setState({ users: data, loading: false });
+  }
+
+  // Receive query in search component and fetch users
+  searchUser = async (query) => {
+    this.setState({ loading: true });
+    const res = await fetch(
+      `https://api.github.com/search/users?q=${query}&client_id=${process.env.REACT_APP_CLIENT_id}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+    const data = await res.json();
+    this.setState({ users: data.items, loading: false });
+  };
+
+  render() {
+    return (
+      <div className='App'>
+        <Navbar />
+
+        <div className='container'>
+          <Search searchUser={this.searchUser} />
+          <Users users={this.state.users} loading={this.state.loading} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

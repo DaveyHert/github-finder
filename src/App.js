@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     users: [],
     user: {},
+    repos: null,
     loading: false,
     alert: null,
   };
@@ -56,6 +57,14 @@ class App extends Component {
     this.setState({ user: res.data, loading: false });
   };
 
+  // Get Users Repo
+  getRepos = async (username) => {
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+
+    this.setState({ repos: res.data });
+  };
   //Set alert if input is empty
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
@@ -67,7 +76,7 @@ class App extends Component {
 
   // render components
   render() {
-    const { users, user, loading, alert } = this.state;
+    const { users, user, loading, alert, repos } = this.state;
     return (
       // wrap whole app in router
       <Router>
@@ -108,6 +117,8 @@ class App extends Component {
                     getUser={this.getUser}
                     user={user}
                     loading={loading}
+                    getRepos={this.getRepos}
+                    repos={repos}
                   />
                 )}
               />

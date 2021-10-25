@@ -3,7 +3,9 @@ import UserItem from "./UserItem";
 import Spinner from "../layout/Spinner";
 import PropTypes from "prop-types";
 
-const Users = ({ users, loading }) => {
+const Users = (props) => {
+  const { users, loading } = props;
+
   if (loading) return <Spinner />;
 
   return (

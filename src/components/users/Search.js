@@ -10,6 +10,7 @@ class Search extends Component {
     searchUsers: PropTypes.func.isRequired,
     clearUsers: PropTypes.func.isRequired,
     showClear: PropTypes.bool.isRequired,
+    setAlert: PropTypes.func.isRequired,
   };
   // Update state with input value
   onChange = (e) => {
@@ -19,8 +20,13 @@ class Search extends Component {
   // Pass query up though props
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: "" });
+    // create alert if input is empty
+    if (this.state.text === "") {
+      this.props.setAlert(`Please enter a user's name`, "light");
+    } else {
+      this.props.searchUsers(this.state.text);
+      this.setState({ text: "" });
+    }
   };
 
   // render search form

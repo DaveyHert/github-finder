@@ -51,16 +51,16 @@ class App extends Component {
   getUser = async (username) => {
     this.setState({ loading: true });
     const res = await axios.get(
-      `https://api.github.com/users/${username}?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
 
     this.setState({ user: res.data, loading: false });
   };
 
   // Get Users Repo
-  getRepos = async (username) => {
+  getUserRepos = async (username) => {
     const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
 
     this.setState({ repos: res.data });
@@ -117,7 +117,7 @@ class App extends Component {
                     getUser={this.getUser}
                     user={user}
                     loading={loading}
-                    getRepos={this.getRepos}
+                    getUserRepos={this.getUserRepos}
                     repos={repos}
                   />
                 )}

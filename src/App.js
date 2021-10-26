@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -9,7 +9,8 @@ import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import about from "./components/pages/about";
 
-class App extends Component {
+const App = () => {
+  const [users, setUsers] = useState([])
   state = {
     users: [],
     user: {},

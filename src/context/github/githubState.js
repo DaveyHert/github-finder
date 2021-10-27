@@ -18,7 +18,17 @@ const GithubState = (props) => {
     loading: false,
   };
 
-  const [state, dispatch] = useReducer(initialState, GithubReducer);
+  const [state, dispatch] = useReducer(GithubReducer, initialState);
+
+  //Search Users
+
+  //Get User
+
+  //Get Repos
+
+  // Clear Users
+
+  //Set Loading
 
   return (
     <githubContext.Provider

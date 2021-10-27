@@ -8,7 +8,7 @@ import User from "./components/users/User";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import about from "./components/pages/about";
-import GithubState from "./context/github/githubState";
+import GithubState from "./context/github/GithubState";
 
 const App = () => {
   const [users, setUsers] = useState([]);

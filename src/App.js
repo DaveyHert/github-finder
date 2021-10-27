@@ -77,8 +77,8 @@ const App = () => {
 
   // render components
   return (
+    // wrap whole app in router
     <GithubState>
-      // wrap whole app in router
       <Router>
         <div className='App'>
           <Navbar />

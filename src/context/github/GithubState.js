@@ -19,6 +19,7 @@ const GithubState = (props) => {
   };
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
+
   //Search Users
   const searchUsers = async (query) => {
     setLoading();
@@ -26,7 +27,6 @@ const GithubState = (props) => {
       `https://api.github.com/search/users?q=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
     const data = await res.data;
-    setUsers(data.items);
 
     dispatch({
       type: SEARCH_USERS,

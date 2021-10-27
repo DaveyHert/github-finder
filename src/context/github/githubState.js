@@ -18,5 +18,20 @@ const GithubState = (props) => {
     loading: false,
   };
 
-  const [state, dispatch] = useReducer();
+  const [state, dispatch] = useReducer(initialState, GithubReducer);
+
+  return (
+    <githubContext.Provider
+      value={{
+        users: state.users,
+        user: state.user,
+        repos: state.repos,
+        loading: state.loading,
+      }}
+    >
+      {props.children}
+    </githubContext.Provider>
+  );
 };
+
+export default GithubState;

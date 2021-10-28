@@ -32,6 +32,7 @@ const App = () => {
 */
 
   // Receive query in search component and fetch multiple users
+  /*
   const searchUsers = async (query) => {
     setLoading(true);
     const res = await axios.get(
@@ -41,6 +42,7 @@ const App = () => {
     setUsers(data.items);
     setLoading(false);
   };
+  */
 
   // Clear users
   const clearUsers = () => {
@@ -95,7 +97,6 @@ const App = () => {
                   <Fragment>
                     {/* Search component */}
                     <Search
-                      clearUsers={clearUsers}
                       showClear={users.length > 0 ? true : false}
                       showAlert={showAlert}
                     />

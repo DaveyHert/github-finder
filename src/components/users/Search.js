@@ -8,7 +8,6 @@ const Search = () => {
   const { searchUsers, users, clearUsers } = githubContext;
   // Initialize Alert Context
   const alertContext = useContext(AlertContext);
-  console.log(alertContext);
 
   // Set state
   const [text, setText] = useState("");

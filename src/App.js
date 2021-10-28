@@ -95,7 +95,6 @@ const App = () => {
                   <Fragment>
                     {/* Search component */}
                     <Search
-                      searchUsers={searchUsers}
                       clearUsers={clearUsers}
                       showClear={users.length > 0 ? true : false}
                       showAlert={showAlert}

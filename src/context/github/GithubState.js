@@ -27,7 +27,6 @@ const GithubState = (props) => {
       `https://api.github.com/search/users?q=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     );
     const data = await res.data;
-
     dispatch({
       type: SEARCH_USERS,
       payload: data.items,
@@ -41,7 +40,6 @@ const GithubState = (props) => {
   //Clear Users
 
   // Set Loading
-
   const setLoading = () =>
     dispatch({
       type: SET_LOADING,
@@ -50,10 +48,11 @@ const GithubState = (props) => {
   return (
     <GithubContext.Provider
       value={{
-        users: state.user,
+        users: state.users,
         user: state.user,
-        repos: state.repo,
+        repos: state.repos,
         loading: state.loading,
+        searchUsers,
       }}
     >
       {props.children}

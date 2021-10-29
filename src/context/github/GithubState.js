@@ -13,6 +13,7 @@ import {
 let githubClientID;
 let githubClientSecret;
 
+// Check running environment
 if (process.env.NODE_ENV !== "production") {
   githubClientID = process.env.REACT_APP_GITHUB_CLIENT_ID;
   githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
